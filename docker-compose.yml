@@ -1,0 +1,22 @@
+version: '3.3'
+services: 
+  angular:
+    build:
+      context: ./
+      args:
+        url: https://github.com/Wynats/ngrx-test.git
+        project: ngrx-test
+    volumes:
+      - '.:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    container_name: ngrx-test
+    ports:
+      - 4200:4200
+    image: ngrx-test
+
+
+      
+
+
+
+
