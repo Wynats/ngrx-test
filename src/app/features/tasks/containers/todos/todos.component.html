@@ -1,0 +1,3 @@
+<div *ngFor="let todo of (todos$ | async)?.content" class="todo">
+  <app-todo-basic-info [todoInfo]="todo"></app-todo-basic-info>
+</div>
