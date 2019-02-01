@@ -1,7 +1,7 @@
 FROM alpine/git as clone
 ARG url
-WORKDIR /app
 RUN git clone ${url}
+WORKDIR /app
 
 #https://github.com/Ismaestro/angular7-example-app/blob/master/Dockerfile
 FROM node:8-alpine as builder
@@ -14,7 +14,7 @@ RUN npm i && mkdir /ng-app && cp -R ./node_modules ./ng-app
 
 WORKDIR /ng-app
 
-COPY . .
+#COPY . .
 
 ## Build the angular app in production mode and store the artifacts in dist folder
 RUN $(npm bin)/ng build
@@ -22,7 +22,7 @@ RUN $(npm bin)/ng build
 FROM nginx:1.13.3-alpine
 
 ## Copy our default nginx config
-COPY nginx/default.conf /etc/nginx/conf.d/
+COPY --from=clone /app/ngrx-test/nginx/default.conf /etc/nginx/conf.d/
 
 ## Remove default nginx website
 RUN rm -rf /usr/share/nginx/html/*
