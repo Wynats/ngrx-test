@@ -1,15 +1,26 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Todo } from '../../models';
 
+import * as fromStore from '../../store';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
 @Component({
   selector: 'app-todo',
   templateUrl: './todo.component.html',
   styleUrls: ['./todo.component.scss']
 })
 export class TodoComponent implements OnInit {
-  @Input() todoInfo: Todo;
+  todo$: Observable<Todo>;
+  editMode = false;
 
-  constructor() {}
+  constructor(private store: Store<fromStore.TasksState>) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.todo$ = this.store.select(fromStore.getSelectedTodo);
+  }
+  onDelete() {}
+  onModify() {
+    this.editMode = !this.editMode;
+  }
 }

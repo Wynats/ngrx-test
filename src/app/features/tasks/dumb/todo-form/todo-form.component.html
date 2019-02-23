@@ -1,6 +1,20 @@
-<form>
-  <label>
-    Titulo
-    <input type="text" [formControlName]="title">
-  </label>
+<form [formGroup]="todoForm">
+  <div>
+    <label>
+      Titulo
+      <input type="text" formControlName="title">
+    </label>
+  </div>
+  <div>
+    <label>
+      Descripcion
+      <input type="text" formControlName="description">
+    </label>
+  </div>
+  <div>
+    <label>
+      Personas a cargo
+      <input type="text" formControlName="people">
+    </label>
+  </div>
 </form>

@@ -6,13 +6,13 @@ import {
 } from '@angular/router';
 import { ActionReducerMap, createFeatureSelector } from '@ngrx/store';
 
-export class RouterStateUrl {
+export interface RouterStateUrl {
   url: string;
   queryParams: Params;
   params: Params;
 }
 
-export class State {
+export interface State {
   routerReducer: fromRouter.RouterReducerState<RouterStateUrl>;
 }
 
@@ -34,7 +34,7 @@ export class CustomSerializer
     while (state.firstChild) {
       state = state.firstChild;
     }
-    const { params } = state.params;
+    const { params } = state;
 
     return { url, queryParams, params };
   }

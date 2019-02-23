@@ -1,8 +1,14 @@
-<h1>Titulo de la tarea: {{todo.title}} con id {{todo.id}}</h1>
+<div *ngIf="!editMode">
+  <h1>Titulo de la tarea: {{(todo$ | async).title}} con id {{(todo$ | async).id}}</h1>
 
-<h2>Descripcion de la tarea: {{todo.description}}</h2>
+  <h2>Descripcion de la tarea: {{(todo$ | async).description}}</h2>
 
-<h2>Persona(s) a cargo: </h2>{{todo | json}}
+  <h2>Persona(s) a cargo: </h2>{{todo$ | async | json}}
 
+</div>
+
+<div *ngIf="editMode">
+  <app-todo-form [todoInfo]="todo$ | async"></app-todo-form>
+</div>
 <button class="button error" (click)="onDelete()">Eliminar</button>
 <button class="button info" (click)="onModify()">Cambiar</button>

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TasksRoutingModule } from './tasks-routing.module';
@@ -14,11 +15,16 @@ import { EffectsModule } from '@ngrx/effects';
 import { TodoFormComponent } from './dumb/todo-form/todo-form.component';
 
 @NgModule({
-  declarations: [...fromContainers.containers, ...fromDumb.dumbs, TodoFormComponent],
+  declarations: [
+    ...fromContainers.containers,
+    ...fromDumb.dumbs,
+    TodoFormComponent
+  ],
   exports: [...fromContainers.containers, ...fromDumb.dumbs],
   imports: [
     CommonModule,
     HttpClientModule,
+    ReactiveFormsModule,
     TasksRoutingModule,
     StoreModule.forFeature('tasks', reducers),
     EffectsModule.forFeature(effects)

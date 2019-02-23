@@ -19,7 +19,7 @@ export const getSelectedTodo = createSelector(
   getTodosEntities,
   fromRoot.getRouterState,
   (entities, router): Todo => {
-    return router.state && entities[router.state.params.todoId];
+    return router.state && entities.content[router.state.params.todoId];
   }
 );
 

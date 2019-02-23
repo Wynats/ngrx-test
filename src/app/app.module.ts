@@ -23,8 +23,8 @@ export const metaReducers: MetaReducer<any>[] = !environment.production
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     StoreModule.forRoot(reducers, { metaReducers }),
+    AppRoutingModule,
     EffectsModule.forRoot([]),
     StoreRouterConnectingModule,
     !environment.production ? StoreDevtoolsModule.instrument() : []
